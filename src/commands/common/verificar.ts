@@ -9,11 +9,29 @@ export default new Command({
         const { guild } = interaction;
         if (!guild) return;
 
-        const memberList = await guild.members.list();
-        console.log(memberList);
-        const response = memberList.map((m) => m.displayName).join('\n');
-        await interaction.reply({
-            content: `Membros: ${response}`
-        });
+        await interaction.deferReply();
+
+        const memberList = guild.members.cache;
+
+        let encontrado = false;
+
+        if (memberList) {
+            memberList.forEach((member) => {
+                const presence = member.presence;
+                if (presence) {
+                    const activities = presence.activities;
+                    if (activities) {
+                        activities.forEach((activity) => {
+                            if (activity.applicationId === '1129504307851567196'/* Street Fighter™ 6*/) {
+                                console.log(`ID da aplicação: ${activity.applicationId}`);
+                                
+                            }
+                        });
+                    }
+                }
+            });
+        }
+
+
     }
 });
