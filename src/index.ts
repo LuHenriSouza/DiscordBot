@@ -8,12 +8,6 @@ client.start();
 
 export { client }
 
-client.on('ready', () => {
-    console.log('Bot online'.green)
-})
-
-
-
 client.on('messageUpdate', (message) => {
     if (!message.author) return;
     if (message.author.id == client.user?.id) return;
@@ -22,4 +16,4 @@ client.on('messageUpdate', (message) => {
         content: "EDITA MENSAGEM NA MINHA FRENTE NÃO ARROMBADO DE MERDA"
     })
 
-})
+});
